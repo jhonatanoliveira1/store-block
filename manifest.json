@@ -10,6 +10,10 @@
     "store": "0.x",
     "react": "3.x"
   },
+  "mustUpdateAt": "2019-04-02",
+  "scripts": {
+    "postreleasy": "vtex publish --verbose"
+  },
   "dependencies": {
     "vtex.styleguide": "9.x",
     "vtex.css-handles": "0.x"
