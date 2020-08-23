@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { TimeSplit } from './typings/global'
 import { tick } from './utils/time'
+import { useCssHandles } from 'vtex.css-handles'
 
 interface CountdownProps {
   targetDate: string
 }
 
 const DEFAULT_TARGET_DATE = (new Date('2020-06-25')).toISOString()
+const CSS_HANDLES = ['countdown']
 
 const Countdown: StorefrontFunctionComponent<CountdownProps> = ({ targetDate = DEFAULT_TARGET_DATE }) => {
   const [timeRemaining, setTime] = useState<TimeSplit>({
@@ -15,12 +17,13 @@ const Countdown: StorefrontFunctionComponent<CountdownProps> = ({ targetDate = D
     seconds: '00'
   })
 
-  tick(targetDate, setTime)
-
+  const { handles } = useCssHandles(CSS_HANDLES)
   const {hours, minutes, seconds} = timeRemaining
 
+  tick(targetDate, setTime)
+
   return (
-    <div>
+    <div className={`${handles} t-heading-2 fw3 w-100 c-muted-1 db tc`}>
       <h1>{ `${hours}:${minutes}:${seconds}` }</h1>
     </div>
   );
